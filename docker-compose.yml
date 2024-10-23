@@ -1,0 +1,7 @@
+services: 
+  reactjs-srv: 
+    image: reacjs-nginx-jenkins:v1.0.0
+    build: . 
+    container_name: reactjs-jenkins-cont
+    ports: 
+      - "3000:80"
