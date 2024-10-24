@@ -2,6 +2,9 @@ services:
   reactjs-srv: 
     image: reacjs-nginx-jenkins:v1.0.0
     build: . 
+    pull_policy: build
     container_name: reactjs-jenkins-cont
     ports: 
       - "3000:80"
+
+# docker compose up -d --build
