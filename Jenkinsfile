@@ -18,11 +18,14 @@ pipeline {
         //         sh " npm install "
         //     }
         // }
-        // stage("Run Tests"){
-        //     steps {
-        //         sh " npm test "
-        //     }
-        // }
+        stage("Run Tests"){
+            steps {
+                // sh " npm test "
+                sh """
+                    echo "value of  RUN_TEST is ${params.RUN_TEST}"
+                """
+            }
+        }
 
         stage("Build and Deploy"){
             steps{
