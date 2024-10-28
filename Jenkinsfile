@@ -13,21 +13,19 @@ pipeline {
         //     }
         // }
 
-        // stage("Install dependencies "){
-        //     steps{
-        //         sh " npm install "
-        //     }
-        // }
+
         stage("Run Tests"){
             steps {
-                // sh " npm test "
-                // sh """
-                //     echo "value of  RUN_TEST is ${params.RUN_TEST}"
-                // """
 
                 script{
                     if (params.RUN_TEST){
-                        sh "echo '  Unit test will run '"
+                        sh """
+                        echo "Install dependencies " 
+                        npm install 
+                        echo "Running Unit Test..."
+                        npm test
+                        
+                        """
                     }else {
                         sh "echo 'Unit Test will NOT run  ' "
                     }
