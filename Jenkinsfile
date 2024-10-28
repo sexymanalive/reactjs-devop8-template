@@ -42,4 +42,11 @@ pipeline {
             }
         }
     }
+
+    post{
+        // this will clean our workspace directory even it success or fail
+        always{
+            cleanws()
+        }
+    }
 }
