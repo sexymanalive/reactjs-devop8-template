@@ -21,9 +21,17 @@ pipeline {
         stage("Run Tests"){
             steps {
                 // sh " npm test "
-                sh """
-                    echo "value of  RUN_TEST is ${params.RUN_TEST}"
-                """
+                // sh """
+                //     echo "value of  RUN_TEST is ${params.RUN_TEST}"
+                // """
+
+                script{
+                    if (params.RUN_TEST){
+                        sh "echo '  Unit test will run '"
+                    }else {
+                        sh "echo 'Unit Test will NOT run  ' "
+                    }
+                }
             }
         }
 
