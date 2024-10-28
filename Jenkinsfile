@@ -3,7 +3,14 @@ pipeline {
     tools {
         nodejs 'node-latest'
     }
-
+ parameters {
+        booleanParam(name: 'RUN_STAGE',
+         defaultValue: false,
+          description: 'Set to true to run the conditional stage')
+         string(name: "MESSAGE", defaultValue: "HELLO WORLD ", 
+         trim: true,
+          description: "Sample string parameter")
+    }
     stages {
         // stage('Get Code') {
         //     steps {
@@ -13,6 +20,14 @@ pipeline {
         //     }
         // }
 
+        stage("Show value of params "){
+            steps{
+                sh """
+                 echo "value of message is : ${params.MESSAGE}"
+                 echo "value of run stage is : ${params.RUN_STAGE}"
+                """
+            }
+        }
 
         stage("Run Tests"){
             steps {
