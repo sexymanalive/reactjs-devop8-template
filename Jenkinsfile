@@ -65,7 +65,7 @@ pipeline {
         stage("Add domain name"){
             when {
                 expression {
-                    retun params.DEPLOY  == true
+                    return params.DEPLOY  == true
                 }
             }
             steps{
