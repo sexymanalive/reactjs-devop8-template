@@ -4,7 +4,7 @@ pipeline {
         nodejs 'node-latest'
     }
  parameters {
-        booleanParam(name: 'RUN_STAGE',
+        booleanParam(name: 'DEPLOY',
          defaultValue: false,
           description: 'Set to true to run the conditional stage')
          string(name: "MESSAGE", defaultValue: "HELLO WORLD ", 
@@ -49,6 +49,11 @@ pipeline {
         }
 
         stage("Build and Deploy"){
+            when {
+                expression  {
+                    return params.DEPLOY == true
+                }
+            }
             steps{
                 echo "Using docker compose to build and deploy "
                 sh """
@@ -58,6 +63,11 @@ pipeline {
         }
 
         stage("Add domain name"){
+            when {
+                expression {
+                    retun params.DEPLOY  == true
+                }
+            }
             steps{
                 echo "Run shellscript to add domain "
                 // sh """
