@@ -12,6 +12,7 @@ pipeline {
           description: "Sample string parameter")
     }
     stages {
+        
         // stage('Get Code') {
         //     steps {
         //         echo  "Getting code from github..."
