@@ -46,21 +46,7 @@ function App() {
     setIsValidated(value) // get value from navbar 
   }
 
-  const unusedVariable = "This is never used";
 
-// Console statement
-console.log("Debug message");
-
-// Duplicate code example
-function duplicateFunction() {
-    const value = "Hello";
-    console.log(value);
-}
-
-function duplicateFunctionCopy() { // Duplicate of the previous function
-    const value = "Hello";
-    console.log(value);
-}
   return (
 
     // !isLoading && 
