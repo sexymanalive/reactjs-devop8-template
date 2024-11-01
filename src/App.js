@@ -29,6 +29,13 @@ function App() {
   var helloworld = "message"
 
   console.log("this bis useful confsole log ")
+
+  function helloworld(){
+    console.log("this is the same function ")
+  }
+  function helloworldCopy(){
+    console.log("this is the same function ")
+  }
   // const [isLoading, setIsLoading] = useState(true)
 
   //validate the token in ensure that users truly valid 
