@@ -1,6 +1,6 @@
 services: 
   reactjs-srv: 
-    image: reacjs-nginx-jenkins:v1.0.0
+    image: 69966/reactjs-jenkins-nginx:v1.0.0
     build: . 
     pull_policy: build
     container_name: reactjs-jenkins-cont
