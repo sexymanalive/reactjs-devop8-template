@@ -24,6 +24,11 @@ function App() {
   const [isValidated, setIsValidated] = useState(
     localStorage.getItem("tokens") ? true : false
   )
+
+
+  var helloworld = "message"
+
+  console.log("this bis useful confsole log ")
   // const [isLoading, setIsLoading] = useState(true)
 
   //validate the token in ensure that users truly valid 
