@@ -6,7 +6,7 @@ pipeline{
         TELEGRAM_CHAT_ID="683081514"
     }
     stages{
-        stage("Scan with sonarqube "){
+        stage("Scan with Sonarqube "){
               environment{
                 scannerHome= tool 'sonarqube-server'
             }
@@ -21,6 +21,28 @@ pipeline{
 
 
                 }
+            }
+        }
+
+        stage("Wait for Quality Gate"){
+            steps{
+                script{
+                    def qg = waitForQualityGate()
+                    if (qg.status != 'OK'){
+                        currentBuild.result='FAILURE'
+                    }else{
+                        currentBuild.result='SUCCESS'
+                    }
+                }
+            }
+        }
+
+        stage("Build Image"){
+            steps{
+                sh """
+                    echo "Showing all the directory in the workspace " 
+                    ls -lrt 
+                """
             }
         }
     }
