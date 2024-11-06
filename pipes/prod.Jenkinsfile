@@ -48,7 +48,8 @@ pipeline{
                 sh """
                     echo "Showing all the directory in the workspace " 
                     ls -lrt 
-                    docker compose --build
+                     # docker compose --build
+                    docker build -t 69966/reactjs-jenkins-nginx:v1.0.0 . 
                     docker tag 69966/reactjs-jenkins-nginx:v1.0.0 ${IMAGE_NAME}
                 """
             }
@@ -80,6 +81,7 @@ pipeline{
                     sh """
 
                     ls -lrt
+                    ansible-playbook -i inventory.ini playbooks/deploy-reactjs-service.yml
                     """
                 }
             }
