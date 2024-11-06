@@ -4,6 +4,7 @@ pipeline{
       environment{
         TELEGRAM_TOKEN="7830516253:AAHfv7jv7AQSFN63UYJSnJtIIJVQNzVFqvQ"
         TELEGRAM_CHAT_ID="683081514"
+        IMAGE_NAME="69966/reactjs-jenkins-nginx:${var.BUILD_NUMBER}"
     }
     stages{
         stage("Scan with Sonarqube "){
@@ -38,11 +39,49 @@ pipeline{
         }
 
         stage("Build Image"){
+            when{
+                expression {
+                    return currentBuild.result == 'SUCCESS'
+                }
+            }
             steps{
                 sh """
                     echo "Showing all the directory in the workspace " 
                     ls -lrt 
+                    docker compose --build
+                    docker tag 69966/reactjs-jenkins-nginx:v1.0.0 ${IMAGE_NAME}
                 """
+            }
+        }
+
+        stage("Push Image to the docker registry "){
+            when {
+                expression{
+                    return currentBuild.result = 'SUCCESS'
+                }
+            }
+            steps{
+                script{
+                // def imageName="69966/reactjs-jenkins-nginx:v1.0.0"
+                withDockerRegistry(credentialsId: 'DOCKERHUB') {
+                    sh """
+                    docker push ${IMAGE_NAME}
+                    """
+               
+                }
+                 }
+            }
+        }
+
+
+        stage("Deploy service on worker02"){
+            steps{
+                dir("pipes"){
+                    sh """
+
+                    ls -lrt
+                    """
+                }
             }
         }
     }
