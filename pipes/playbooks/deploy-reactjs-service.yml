@@ -25,7 +25,7 @@
         definition:
           services:
             reactjs_srv:   
-              image: {{ image_name }}
+              image: "{{ image_name }}"
               container_name: reactjs-new-cont
               ports: 
                 - "3000:80"
