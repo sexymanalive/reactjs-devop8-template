@@ -14,8 +14,8 @@ pipeline{
             steps{
                 script{
                      def projectKey = 'reactjs-devops8-template' 
-                    def projectName = 'Reactjs DevOps8 template'  // Replace with your project name
-                    def projectVersion = '1.0.0'  
+                     def projectName = 'Reactjs DevOps8 template'  // Replace with your project name
+                     def projectVersion = '1.0.0'  
 
                     // call our libary 
                     scanReactJsSonarqube(projectName, projectKey, projectVersion)
@@ -88,6 +88,15 @@ pipeline{
         }
     }
     post{
+        failure{
+            script{
+                def message = """
+                Deployment is failed 
+                Check it here : https://jenkins\\.devnerd\\.store/job/ansible-reactjs-pipeline/
+                """
+                sendTelegramMessage(message,TELEGRAM_TOKEN, TELEGRAM_CHAT_ID)
+            }
+        }
         success{
             script{
                
