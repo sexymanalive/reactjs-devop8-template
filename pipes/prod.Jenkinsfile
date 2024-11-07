@@ -93,7 +93,7 @@ pipeline{
                
                 def message = """
                 Congratulations
-                You can access your website here: http://34.124.236.216:3000
+                You can access your website here: http://34\\.124\\.236\\.216:3000
                 """
                 sendTelegramMessage(message,TELEGRAM_TOKEN, TELEGRAM_CHAT_ID)
             }
