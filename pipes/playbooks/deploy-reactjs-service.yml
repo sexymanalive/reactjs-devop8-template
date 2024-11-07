@@ -5,6 +5,20 @@
   vars: 
     image_name: "reactjs-jenkins-nginx:v1.0.0"
   tasks: 
+    - name: Install Docker  
+      apt: 
+        name: docker 
+        state: present 
+    - name: Install docker compose 
+      apt: 
+        name: docker-compose 
+        state: present 
+    - name: Add current user into docker group 
+      user: 
+        name: keo # variables for the current user 
+        groups: 
+          - docker 
+        append: true
     - name: Start Reactjs with docker compose
       docker_compose: 
         project_name: reactjs-new-srv
