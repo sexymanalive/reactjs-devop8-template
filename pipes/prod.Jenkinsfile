@@ -81,7 +81,8 @@ pipeline{
                     ansible -i inventory.ini worker02 -m ping
 
                     ansible-playbook -i inventory.ini \
-                        playbooks/deploy-reactjs-service.yml
+                        playbooks/deploy-reactjs-service.yml \
+                        -e "image_name=${IMAGE_NAME}"
                     """
                 }
             }

@@ -3,7 +3,7 @@
   hosts: 
     - worker02
   vars: 
-    image_name: "reactjs-jenkins-nginx:v1.0.0"
+    image_name: "69966/reactjs-jenkins-nginx:v1.0.0"
   tasks: 
     - name: Install Docker  
       apt: 
@@ -25,7 +25,7 @@
         definition:
           services:
             reactjs_srv:   
-              image: 69966/{{ image_name }}
+              image: {{ image_name }}
               container_name: reactjs-new-cont
               ports: 
                 - "3000:80"
