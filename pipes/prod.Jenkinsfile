@@ -80,8 +80,8 @@ pipeline{
                 dir("pipes"){
                     sh """
 
-                    ls -lrt
-                    ansible-playbook -i inventory.ini playbooks/deploy-reactjs-service.yml
+                    ansible-playbook -i inventory.ini \
+                        playbooks/deploy-reactjs-service.yml
                     """
                 }
             }
